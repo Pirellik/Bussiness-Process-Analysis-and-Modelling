@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<log>
+  <string key="creator" value="Kamil Pasko"/>
+  <global scope="trace">
+    <string key="trace:name" value="name"/>
+  </global>
+  <global scope="concept">
+    <string key="concept:name" value="name"/>
+  </global>
+  <classifier name="Activity" keys="Activity"/>
+  <classifier name="activity classifier" keys="Activity"/>
+
+  <trace>
+    <string key="trace:name" value="trace1"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="a"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="b"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="c"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="d"/>
+    </concept>
+  </trace>
+  
+  <trace>
+    <string key="trace:name" value="trace2"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="a"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="b"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="c"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="d"/>
+    </concept>
+  </trace>
+
+  <trace>
+    <string key="trace:name" value="trace3"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="a"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="b"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="c"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="d"/>
+    </concept>
+  </trace>
+
+  <trace>
+    <string key="trace:name" value="trace4"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="a"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="c"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="b"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="d"/>
+    </concept>
+  </trace>
+
+  <trace>
+    <string key="trace:name" value="trace5"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="a"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="c"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="b"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="d"/>
+    </concept>
+  </trace>
+
+  <trace>
+    <string key="trace:name" value="trace6"/>
+    <string key="creator" value="Kamil Pasko"/>
+    <concept>
+      <string key="concept:name" value="e"/>
+    </concept>
+    <concept>
+      <string key="concept:name" value="f"/>
+    </concept>
+  </trace>
+
+</log>
