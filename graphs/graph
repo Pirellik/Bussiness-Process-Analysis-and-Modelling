@@ -2,31 +2,41 @@ digraph {
 	graph [nodesep=0.8 rankdir=LR splines=ortho]
 	node [shape=Mrecord]
 	edge [penwidth=2]
-	"XORs register request->['examine thoroughly', 'examine casually', 'check ticket']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"register request" -> "XORs register request->['examine thoroughly', 'examine casually', 'check ticket']"
-	"XORs register request->['examine thoroughly', 'examine casually', 'check ticket']" -> "examine thoroughly"
-	"XORs register request->['examine thoroughly', 'examine casually', 'check ticket']" -> "examine casually"
-	"XORs register request->['examine thoroughly', 'examine casually', 'check ticket']" -> "check ticket"
-	"XORs decide->['reinitiate request', 'pay compensation', 'reject request']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	decide -> "XORs decide->['reinitiate request', 'pay compensation', 'reject request']"
-	"XORs decide->['reinitiate request', 'pay compensation', 'reject request']" -> "reinitiate request"
-	"XORs decide->['reinitiate request', 'pay compensation', 'reject request']" -> "pay compensation"
-	"XORs decide->['reinitiate request', 'pay compensation', 'reject request']" -> "reject request"
-	"XORs reinitiate request->['examine thoroughly', 'check ticket', 'examine casually']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"reinitiate request" -> "XORs reinitiate request->['examine thoroughly', 'check ticket', 'examine casually']"
-	"XORs reinitiate request->['examine thoroughly', 'check ticket', 'examine casually']" -> "examine thoroughly"
-	"XORs reinitiate request->['examine thoroughly', 'check ticket', 'examine casually']" -> "check ticket"
-	"XORs reinitiate request->['examine thoroughly', 'check ticket', 'examine casually']" -> "examine casually"
-	"XORm ['check ticket', 'examine thoroughly', 'examine casually']->decide" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"XORm ['check ticket', 'examine thoroughly', 'examine casually']->decide" -> decide
-	"check ticket" -> "XORm ['check ticket', 'examine thoroughly', 'examine casually']->decide"
-	"examine thoroughly" -> "XORm ['check ticket', 'examine thoroughly', 'examine casually']->decide"
-	"examine casually" -> "XORm ['check ticket', 'examine thoroughly', 'examine casually']->decide"
+	"XORs time-out X->['reject', 'accept']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"time-out X" -> "XORs time-out X->['reject', 'accept']"
+	"XORs time-out X->['reject', 'accept']" -> reject
+	"XORs time-out X->['reject', 'accept']" -> accept
+	"XORs get review X->['accept', 'reject']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"get review X" -> "XORs get review X->['accept', 'reject']"
+	"XORs get review X->['accept', 'reject']" -> accept
+	"XORs get review X->['accept', 'reject']" -> reject
+	"XORs decide->['reject', 'invite additional reviewer', 'accept']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	decide -> "XORs decide->['reject', 'invite additional reviewer', 'accept']"
+	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> reject
+	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> "invite additional reviewer"
+	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> accept
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"invite reviewers" -> "XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 1"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 3"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 2"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 2"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 3"
+	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 1"
+	"XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews" -> "collect reviews"
+	"time-out 1" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"time-out 2" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"get review 3" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"get review 2" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"time-out 3" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"get review 1" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"collect reviews" -> decide
 	start [label="" shape=circle]
-	start -> "register request"
+	start -> "invite reviewers"
 	end [label="" shape=circle]
-	"XORm {'reject request', 'pay compensation'}->end" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"XORm {'reject request', 'pay compensation'}->end" -> end
-	"reject request" -> "XORm {'reject request', 'pay compensation'}->end"
-	"pay compensation" -> "XORm {'reject request', 'pay compensation'}->end"
+	"XORm {'reject', 'accept'}->end" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"XORm {'reject', 'accept'}->end" -> end
+	reject -> "XORm {'reject', 'accept'}->end"
+	accept -> "XORm {'reject', 'accept'}->end"
 }

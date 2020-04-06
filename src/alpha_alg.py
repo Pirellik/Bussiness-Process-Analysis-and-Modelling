@@ -6,7 +6,6 @@ from pm4py.algo.discovery.alpha import factory as alpha_miner
 from pm4py.visualization.petrinet import factory as pn_vis_factory
 
 
-
 class AlphaAlgorithm:
     def __init__(self):
         self.log = None
@@ -59,7 +58,6 @@ class AlphaAlgorithm:
         # adding split gateways based on causality
         for event in causality.keys():
             if len(causality[event]) > 1:
-                print('LEN', len(causality[event]))
                 if tuple(causality[event]) in parallel_events:
                     G.add_and_split_gateway(event,causality[event])
                 else:
@@ -68,7 +66,6 @@ class AlphaAlgorithm:
         # adding merge gateways based on inverted causality
         for event in inv_causality.keys():
             if len(inv_causality[event]) > 1:
-                print('LEN', len(inv_causality[event]))
                 if tuple(inv_causality[event]) in parallel_events:
                     G.add_and_merge_gateway(inv_causality[event],event)
                 else:
