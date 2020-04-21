@@ -1,3 +1,9 @@
+'''
+Code below is copied from this site: https://ai.ia.agh.edu.pl/pl:dydaktyka:dss:lab03
+However last two functions are added by author of this repository
+'''
+
+
 import graphviz
  
 class MyGraph(graphviz.Digraph):

@@ -2,11 +2,21 @@ digraph {
 	graph [nodesep=0.8 rankdir=LR splines=ortho]
 	node [shape=Mrecord]
 	edge [penwidth=2]
+	"1loop accept in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"1loop accept out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"1loop accept out" -> "1loop accept in"
+	"1loop accept in" -> accept
+	accept -> "1loop accept out"
 	"1loop reject in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop reject out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop reject out" -> "1loop reject in"
 	"1loop reject in" -> reject
 	reject -> "1loop reject out"
+	"1loop invite reviewers in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"1loop invite reviewers out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"1loop invite reviewers out" -> "1loop invite reviewers in"
+	"1loop invite reviewers in" -> "invite reviewers"
+	"invite reviewers" -> "1loop invite reviewers out"
 	"1loop invite additional reviewer in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop invite additional reviewer out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop invite additional reviewer out" -> "1loop invite additional reviewer in"
@@ -17,58 +27,48 @@ digraph {
 	"1loop collect reviews out" -> "1loop collect reviews in"
 	"1loop collect reviews in" -> "collect reviews"
 	"collect reviews" -> "1loop collect reviews out"
-	"1loop accept in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"1loop accept out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"1loop accept out" -> "1loop accept in"
-	"1loop accept in" -> accept
-	accept -> "1loop accept out"
 	"1loop decide in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop decide out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"1loop decide out" -> "1loop decide in"
 	"1loop decide in" -> decide
 	decide -> "1loop decide out"
-	"1loop invite reviewers in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"1loop invite reviewers out" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"1loop invite reviewers out" -> "1loop invite reviewers in"
-	"1loop invite reviewers in" -> "invite reviewers"
-	"invite reviewers" -> "1loop invite reviewers out"
 	"1loop invite additional reviewer out" -> "time-out X"
 	"time-out X" -> "1loop invite additional reviewer in"
 	"1loop invite additional reviewer out" -> "get review X"
 	"get review X" -> "1loop invite additional reviewer in"
-	"XORs get review X->['1loop reject in', '1loop accept in']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"get review X" -> "XORs get review X->['1loop reject in', '1loop accept in']"
-	"XORs get review X->['1loop reject in', '1loop accept in']" -> "1loop reject in"
-	"XORs get review X->['1loop reject in', '1loop accept in']" -> "1loop accept in"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"1loop invite reviewers out" -> "XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "time-out 3"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "get review 1"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "get review 2"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "time-out 2"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "time-out 1"
-	"XORs 1loop invite reviewers out->['time-out 3', 'get review 1', 'get review 2', 'time-out 2', 'time-out 1', 'get review 3']" -> "get review 3"
-	"XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in" -> "1loop collect reviews in"
-	"time-out 1" -> "XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in"
-	"get review 1" -> "XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in"
-	"time-out 2" -> "XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in"
-	"time-out 3" -> "XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in"
-	"get review 3" -> "XORm ['time-out 1', 'get review 1', 'time-out 2', 'time-out 3', 'get review 3']->1loop collect reviews in"
-	"1loop decide out" -> "1loop invite additional reviewer in"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"1loop invite reviewers out" -> "XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "time-out 3"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "get review 2"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "get review 1"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "get review 3"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "time-out 2"
+	"XORs 1loop invite reviewers out->['time-out 3', 'get review 2', 'get review 1', 'get review 3', 'time-out 2', 'time-out 1']" -> "time-out 1"
+	"XORs get review X->['1loop accept in', '1loop reject in']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"get review X" -> "XORs get review X->['1loop accept in', '1loop reject in']"
+	"XORs get review X->['1loop accept in', '1loop reject in']" -> "1loop accept in"
+	"XORs get review X->['1loop accept in', '1loop reject in']" -> "1loop reject in"
+	"XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in" -> "1loop collect reviews in"
+	"time-out 3" -> "XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in"
+	"get review 3" -> "XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in"
+	"time-out 2" -> "XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in"
+	"time-out 1" -> "XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in"
+	"get review 1" -> "XORm ['time-out 3', 'get review 3', 'time-out 2', 'time-out 1', 'get review 1']->1loop collect reviews in"
 	"1loop collect reviews out" -> "1loop decide in"
+	"1loop decide out" -> "1loop invite additional reviewer in"
 	start [label="" shape=circle]
-	"XORs start->['1loop invite reviewers in', 'get review X', 'time-out X']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	start -> "XORs start->['1loop invite reviewers in', 'get review X', 'time-out X']"
-	"XORs start->['1loop invite reviewers in', 'get review X', 'time-out X']" -> "1loop invite reviewers in"
-	"XORs start->['1loop invite reviewers in', 'get review X', 'time-out X']" -> "get review X"
-	"XORs start->['1loop invite reviewers in', 'get review X', 'time-out X']" -> "time-out X"
+	"XORs start->['time-out X', '1loop invite reviewers in', 'get review X']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	start -> "XORs start->['time-out X', '1loop invite reviewers in', 'get review X']"
+	"XORs start->['time-out X', '1loop invite reviewers in', 'get review X']" -> "time-out X"
+	"XORs start->['time-out X', '1loop invite reviewers in', 'get review X']" -> "1loop invite reviewers in"
+	"XORs start->['time-out X', '1loop invite reviewers in', 'get review X']" -> "get review X"
 	end [label="" shape=circle]
-	"XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end" -> end
-	"1loop reject out" -> "XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end"
-	"1loop invite additional reviewer out" -> "XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end"
-	"get review 2" -> "XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end"
-	"1loop accept out" -> "XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end"
-	"time-out X" -> "XORm ['1loop reject out', '1loop invite additional reviewer out', 'get review 2', '1loop accept out', 'time-out X']->end"
+	"XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end" -> end
+	"1loop accept out" -> "XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end"
+	"1loop reject out" -> "XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end"
+	"get review 2" -> "XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end"
+	"1loop invite additional reviewer out" -> "XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end"
+	"time-out X" -> "XORm ['1loop accept out', '1loop reject out', 'get review 2', '1loop invite additional reviewer out', 'time-out X']->end"
 }

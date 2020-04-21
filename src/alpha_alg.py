@@ -53,6 +53,11 @@ class AlphaAlgorithm:
         parallel_events = self.parallel_tasks_set
         inv_causality = self.inv_causalities_dict
 
+        '''
+        Code below is copied from this site: https://ai.ia.agh.edu.pl/pl:dydaktyka:dss:lab03
+        However some modifications were made.
+        '''
+
         G = MyGraph()
 
         # adding split gateways based on causality

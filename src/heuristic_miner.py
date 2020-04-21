@@ -76,6 +76,11 @@ class HeuristicMiner:
             for row in inout_df.index:
                 inout_df[col][row] = row
 
+        '''
+        Code below is copied from this site: https://ai.ia.agh.edu.pl/pl:dydaktyka:dss:lab03
+        However some modifications were made.
+        '''
+
         G = MyGraph()
 
         #adding 1loops to graph
@@ -167,10 +172,6 @@ class HeuristicMiner:
                 t2t1 = twoloop_freq[col_index][row_index]
                 if t1t2 > t2t1:
                     self.twoloop_matrix[row_index][col_index] = (t1t2 + t2t1) / (t1t2 + t2t1 + 1)
-        
-        print("DUPA +++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        for elem in self.twoloop_matrix:
-            print(elem)
 
     def _construct_direct_followers_set(self):
         self.direct_followers_set = set()
@@ -232,4 +233,3 @@ class HeuristicMiner:
             for col_index, elem in enumerate(row):
                 if elem > self.twoloop_threshold:
                     self.twoloop_set.add((self.index_to_event[row_index], self.index_to_event[col_index]))
-        print(self.twoloop_set)
