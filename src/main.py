@@ -9,7 +9,7 @@ def use_alpha(log_path, graph_name):
    alpha.create_graph(filename=graph_name)
 
 def use_heuristic(log_path, graph_name, thresh_direct_followers, thresh_parallel, thresh_oneloop, thresh_twoloop):
-   hminer = HeuristicMiner()
+   hminer = HeuristicMiner(thresh_direct_followers, thresh_parallel, thresh_oneloop, thresh_twoloop)
    hminer.read_log_file(log_path)
    hminer.build_model()
    hminer.create_graph(filename=graph_name)
