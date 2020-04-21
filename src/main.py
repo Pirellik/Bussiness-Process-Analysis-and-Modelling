@@ -7,6 +7,8 @@ class Algorithm(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Algorithm, self).__init__(parent)
 
+        self.logsPath = ""
+
         self.logsBtn = QtWidgets.QPushButton()
         self.logsBtn.setText("Wybierz logi")
         self.logsBtn.clicked.connect(self.selectLogs)
@@ -96,7 +98,7 @@ class Algorithm(QtWidgets.QWidget):
                 alpha.read_log_file(self.logsPath[0])
                 alpha.build_model()
                 alpha.create_graph(self.outputLE.text())
-            if self.algComboBox.currentText() == "heuristic_miner":
+            elif self.algComboBox.currentText() == "heuristic_miner":
                 hminer = HeuristicMiner(float(self.heuristicThreshold1.text()),
                                         float(self.heuristicThreshold2.text()),
                                         float(self.heuristicThreshold3.text()),
@@ -104,10 +106,14 @@ class Algorithm(QtWidgets.QWidget):
                 hminer.read_log_file(self.logsPath[0])
                 hminer.build_model()
                 hminer.create_graph(self.outputLE.text())
+            else:
+                dialog = QtWidgets.QMessageBox()
+                dialog.setText("Wybierz algorytm")
+                dialog.exec_()
         else:
             dialog = QtWidgets.QMessageBox()
-            dialog.setText("Wybierz scieżki logów i outputu")
-            dialog.show()
+            dialog.setText("Wybierz scieżki logów i nazwe outputu")
+            dialog.exec_()
 
 
 if __name__ == '__main__':
