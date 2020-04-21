@@ -9,6 +9,7 @@ class Algorithm(QtWidgets.QWidget):
 
         self.logsPath = ""
 
+        self.logsName = QtWidgets.QLabel()
         self.logsBtn = QtWidgets.QPushButton()
         self.logsBtn.setText("Wybierz logi")
         self.logsBtn.clicked.connect(self.selectLogs)
@@ -43,6 +44,7 @@ class Algorithm(QtWidgets.QWidget):
 
         mainLayout = QtWidgets.QGridLayout()
         mainLayout.addWidget(self.logsBtn, 0, 0)
+        mainLayout.addWidget(self.logsName, 0, 1)
         mainLayout.addWidget(outputLabel, 1, 0)
         mainLayout.addWidget(self.outputLE, 1, 1)
         mainLayout.addWidget(algChooseLabel, 2, 0)
@@ -64,6 +66,7 @@ class Algorithm(QtWidgets.QWidget):
     def selectLogs(self):
         dialog = QFileDialog()
         self.logsPath = dialog.getOpenFileName()
+        self.logsName.setText(self.logsPath[0].split('/')[-1])
 
     def showThresholds(self):
         self.heuristicThreshold1Label.show()
