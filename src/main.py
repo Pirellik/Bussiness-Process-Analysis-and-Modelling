@@ -1,5 +1,4 @@
 from PySide2 import QtWidgets
-from PySide2.QtWidgets import QFileDialog
 from alpha_alg import AlphaAlgorithm
 from heuristic_miner import HeuristicMiner
 
@@ -64,7 +63,7 @@ class Algorithm(QtWidgets.QWidget):
         self.hideThresholds()
 
     def selectLogs(self):
-        dialog = QFileDialog()
+        dialog = QtWidgets.QFileDialog()
         self.logsPath = dialog.getOpenFileName()
         self.logsName.setText(self.logsPath[0].split('/')[-1])
 
