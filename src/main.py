@@ -1,5 +1,4 @@
-import os
-from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2 import QtWidgets
 from PySide2.QtWidgets import QFileDialog
 from alpha_alg import AlphaAlgorithm
 from heuristic_miner import HeuristicMiner
@@ -116,7 +115,7 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
 
-    addressBook = Algorithm()
-    addressBook.show()
+    algorithm = Algorithm()
+    algorithm.show()
 
     sys.exit(app.exec_())
