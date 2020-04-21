@@ -2,35 +2,35 @@ digraph {
 	graph [nodesep=0.8 rankdir=LR splines=ortho]
 	node [shape=Mrecord]
 	edge [penwidth=2]
+	"XORs decide->['invite additional reviewer', 'reject', 'accept']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	decide -> "XORs decide->['invite additional reviewer', 'reject', 'accept']"
+	"XORs decide->['invite additional reviewer', 'reject', 'accept']" -> "invite additional reviewer"
+	"XORs decide->['invite additional reviewer', 'reject', 'accept']" -> reject
+	"XORs decide->['invite additional reviewer', 'reject', 'accept']" -> accept
 	"XORs time-out X->['reject', 'accept']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"time-out X" -> "XORs time-out X->['reject', 'accept']"
 	"XORs time-out X->['reject', 'accept']" -> reject
 	"XORs time-out X->['reject', 'accept']" -> accept
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"invite reviewers" -> "XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "time-out 2"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "get review 2"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "time-out 1"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "get review 1"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "time-out 3"
+	"XORs invite reviewers->['time-out 2', 'get review 2', 'time-out 1', 'get review 1', 'time-out 3', 'get review 3']" -> "get review 3"
 	"XORs get review X->['accept', 'reject']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
 	"get review X" -> "XORs get review X->['accept', 'reject']"
 	"XORs get review X->['accept', 'reject']" -> accept
 	"XORs get review X->['accept', 'reject']" -> reject
-	"XORs decide->['reject', 'invite additional reviewer', 'accept']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	decide -> "XORs decide->['reject', 'invite additional reviewer', 'accept']"
-	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> reject
-	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> "invite additional reviewer"
-	"XORs decide->['reject', 'invite additional reviewer', 'accept']" -> accept
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"invite reviewers" -> "XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 1"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 3"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 2"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 2"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "time-out 3"
-	"XORs invite reviewers->['time-out 1', 'get review 3', 'time-out 2', 'get review 2', 'time-out 3', 'get review 1']" -> "get review 1"
-	"XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
-	"XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews" -> "collect reviews"
-	"time-out 1" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
-	"time-out 2" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
-	"get review 3" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
-	"get review 2" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
-	"time-out 3" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
-	"get review 1" -> "XORm ['time-out 1', 'time-out 2', 'get review 3', 'get review 2', 'time-out 3', 'get review 1']->collect reviews"
+	"XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews" [label="×" fixedsize=true fontsize=35 height=.6 shape=diamond width=.6]
+	"XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews" -> "collect reviews"
+	"time-out 1" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
+	"time-out 3" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
+	"get review 1" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
+	"get review 2" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
+	"get review 3" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
+	"time-out 2" -> "XORm ['time-out 1', 'time-out 3', 'get review 1', 'get review 2', 'get review 3', 'time-out 2']->collect reviews"
 	"collect reviews" -> decide
 	start [label="" shape=circle]
 	start -> "invite reviewers"
