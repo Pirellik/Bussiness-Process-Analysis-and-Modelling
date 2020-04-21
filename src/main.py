@@ -2,6 +2,7 @@ from PySide2 import QtWidgets
 from alpha_alg import AlphaAlgorithm
 from heuristic_miner import HeuristicMiner
 
+
 class Algorithm(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Algorithm, self).__init__(parent)
